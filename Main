@@ -1,0 +1,59 @@
+`timescale 1ns / 1ps
+
+module ana_program(input tek_cift,output [2:0] Led,input mclk
+    );
+    reg [3 : 0] state = 0;
+	 reg [2 : 0] led_reg = 0;
+	 wire clock;
+	 frekans_bolucu bolucu(
+	 .CLK_IN(mclk),
+	 .CLK_OUT(clock)
+	 );
+	 always @ (posedge clock)
+	 begin
+    case(state)
+      0: begin
+		if(tek_cift == 1)begin state = 1; end
+		else
+		begin state = 2; end
+		led_reg = 0;
+		end
+		
+      1: begin
+		if(tek_cift == 1)begin state = 3; end
+		else
+		begin state = 0; end
+		led_reg = 1;
+		end
+	
+      2: begin
+		if(tek_cift == 1)begin state = 3; end
+		else
+		begin state = 4; end
+		led_reg = 2;
+		end
+
+      3: begin
+		if(tek_cift == 1)begin state = 5; end
+		else
+		begin state = 2; end
+		led_reg = 3;
+		end
+		
+		4: begin
+		if(tek_cift == 1)begin state = 5; end
+		else
+		begin state = 6; end
+		led_reg = 4;
+		end
+		
+	   5: begin
+		if(tek_cift == 1)begin state = 7; end
+		else
+		begin state = 4; end
+		led_reg = 5;
+		end
+		
+				
+	   6: begin
+		if(tek_cift == 1)begin sta
