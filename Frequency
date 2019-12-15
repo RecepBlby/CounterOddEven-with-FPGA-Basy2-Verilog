@@ -1,0 +1,19 @@
+`timescale 1ns / 1ps
+
+module frekans_bolucu(input CLK_IN, output CLK_OUT
+    );
+	 reg [31:0] sayac = 0;
+	 reg CLK_REG = 0;
+  always @ (posedge CLK_IN)
+   begin
+	  if(sayac == 25000000)begin
+	  CLK_REG = ~CLK_REG;
+	  sayac = 0;
+	  end
+	  else
+	  begin
+	  sayac = sayac + 1;
+	  end
+   end
+	assign CLK_OUT = CLK_REG;
+endmodule
